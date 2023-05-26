@@ -4,15 +4,15 @@ To run this web app, first install Python https://www.python.org/downloads/
 
 After installing python, run 
 
-`pip install git
+`pip install git`
 
-git clone https://github.com/Evan63w/SunnyAPI
+`git clone https://github.com/Evan63w/SunnyAPI`
 
-cd SunnyAPI 
+`cd SunnyAPI`
 
-pip install -r requirements.txt 
+`pip install -r requirements.txt`
 
-python api.py`
+`python api.py`
 
 This will create a local web server that will act as the API.
 
