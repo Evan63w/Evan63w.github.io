@@ -10,7 +10,7 @@
       <a href="https://github.com/timsinaga86/sunnysense" target="_blank ">SunnySense code here!</a>
       <a href="https://github.com/Evan63w/SunnyAPI" target="_blank ">Backend API here!</a>
     </div>
-    <th><b>Windowsill sensor 1</b></th>
+    <th><b>Windowsill sensor</b></th>
     <table>
       <thead>
         <tr>
@@ -23,8 +23,8 @@
     </table>
 
     <script>
-      fetch("http://127.0.0.1:5000/data", {
-        mode: 'no-cors'
+    fetch("http://127.0.0.1:5000/data", {
+        mode: 'cors'
     })
         .then((response) => response.json())
         .then((data) => {
@@ -33,9 +33,9 @@
           data.forEach((record) => {
             const row = document.createElement("tr");
             row.innerHTML = `
-                        <td>${record.temp}</td>
-                        <td>${record.humidity}</td>
-                        <td>${record.uvindex}</td>
+                          <td><center>${record.temp}</center></td>
+                          <td><center>${record.humidity}</center></td>
+                          <td><center>${record.uvindex}</center></td>
                     `;
             tableBody.appendChild(row);
           });
@@ -44,5 +44,37 @@
           console.log("Error:", error);
         });
     </script>
+    <table>
+      <thead>
+        <tr>
+          <th>Avg Temperature</th>
+          <th>Avg Humidity</th>
+          <th>Avg UV Index</th>
+        </tr>
+      </thead>
+      <tbody id="data-avg-body"></tbody>
+    </table>
+    <script>
+      fetch("http://127.0.0.1:5000/dataavg", {
+          mode: 'cors'
+      })
+          .then((response) => response.json())
+          .then((data) => {
+            // Loop through the data and create table rows
+            const tableBody = document.getElementById("data-avg-body");
+            data.forEach((record) => {
+              const row = document.createElement("tr");
+              row.innerHTML = `
+                          <td><center>${record.temp}</center></td>
+                          <td><center>${record.humidity}</center></td>
+                          <td><center>${record.uvindex}</center></td>
+                      `;
+              tableBody.appendChild(row);
+            });
+          })
+          .catch((error) => {
+            console.log("Error:", error);
+          });
+      </script>
   </body>
 </html>
